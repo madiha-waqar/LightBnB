@@ -1,6 +1,7 @@
 /* Drop tables if they exist with cascading dependencies */
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS properties CASCADE;
+DROP TABLE IF EXISTS reservations CASCADE;
 
 /* Create the users table */
 CREATE TABLE users (
@@ -28,4 +29,13 @@ CREATE TABLE properties (
   post_code VARCHAR(255) NOT NULL,
   active BOOLEAN NOT NULL,
   owner_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+);
+
+/* Create the reservations table */
+CREATE TABLE reservations (
+  id SERIAL PRIMARY KEY NOT NULL,
+  start_date DATE NOT NULL,
+  end_date DATE NOT NULL,
+  property_id INTEGER REFERENCES properties(id) ON DELETE CASCADE,
+  guest_id INTEGER REFERENCES users(id) ON DELETE CASCADE
 );
