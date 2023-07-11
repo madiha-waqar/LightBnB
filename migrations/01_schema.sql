@@ -29,7 +29,7 @@ CREATE TABLE properties (
   province VARCHAR(255) NOT NULL,
   post_code VARCHAR(255) NOT NULL,
   active BOOLEAN NOT NULL,
-  owner_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  owner_id INTEGER REFERENCES users(id) ON DELETE CASCADE
 );
 
 /* Create the reservations table */
