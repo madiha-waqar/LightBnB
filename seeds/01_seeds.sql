@@ -21,3 +21,11 @@ VALUES ('2018-01-11', '2018-01-21', 1, 1),
        ('2020-03-01', '2020-03-11', 3, 3),
        ('2021-04-01', '2021-04-11', 2, 4),
        ('2022-05-22', '2022-05-27', 3, 4);
+
+/* Insert temp data to property_reviews table */
+INSERT INTO property_reviews (rating, message, guest_id, property_id, reservation_id)
+VALUES (4, 'The cottage was lovely and cozy. We enjoyed our stay!', 1, 1, 1),
+       (5, 'The modern apartment exceeded our expectations. Highly recommended!', 2, 2, 2),
+       (3, 'The villa was spacious and had beautiful views, but some amenities were not working.', 3, 3, 3),
+       (5, 'The rustic cabin provided a peaceful getaway. We loved it!', 4, 4, 4),
+       (4, 'The luxury penthouse was absolutely stunning. The views were breathtaking!', 5, 5, 5);
