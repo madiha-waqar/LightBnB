@@ -13,3 +13,11 @@ VALUES ('Cozy Cottage', 'A charming cottage nestled in the countryside.', 'https
        ('Spacious Villa', 'A luxurious villa with stunning ocean views.', 'https://example.com/thumbnail.jpg', 'https://example.com/cover.jpg', 499.99, 4, 3, 4, 'Spain', '789 Oak St', 'Barcelona', 'Catalonia', '08001', true, 3),
        ('Rustic Cabin', 'A cozy cabin surrounded by nature.', 'https://example.com/thumbnail.jpg', 'https://example.com/cover.jpg', 79.99, 1, 1, 1, 'Canada', '789 Forest Rd', 'Vancouver', 'British Columbia', 'V6G 1B4', true, 4),
        ('Luxury Penthouse', 'An extravagant penthouse with panoramic city views.', 'https://example.com/thumbnail.jpg', 'https://example.com/cover.jpg', 999.99, 2, 2, 3, 'United States', '987 High St', 'Miami', 'Florida', '33139', true, 5);
+
+/* Insert temp data to reservations table */
+INSERT INTO reservations (start_date, end_date, property_id, guest_id)
+VALUES ('2018-01-11', '2018-01-21', 1, 1),
+       ('2019-02-04', '2019-02-14', 2, 2),
+       ('2020-03-01', '2020-03-11', 3, 3),
+       ('2021-04-01', '2021-04-11', 2, 4),
+       ('2022-05-22', '2022-05-27', 3, 4);
