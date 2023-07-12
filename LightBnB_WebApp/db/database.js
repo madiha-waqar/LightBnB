@@ -1,11 +1,22 @@
 const properties = require("./json/properties.json");
 const users = require("./json/users.json");
 
-/** 
- * Creating Pool instance to manage connections to PostgreSQL database throughout our application.
- */
+/// Connections
+
+// Importing the Pool object from the 'pg' module
 const { Pool } = require('pg');
-const pool = new Pool();
+
+// Creating a new Pool instance with the database connection configuration
+const pool = new Pool({
+  user: 'labber',
+  password: '123',
+  host: 'localhost',
+  database: 'lightbnb'
+});
+
+// Test code to verify the connection is successfull
+pool.query(`SELECT title FROM properties LIMIT 10;`).then(response => {console.log(response)})
+
 
 /// Users
 
