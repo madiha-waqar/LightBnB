@@ -1,6 +1,12 @@
 const properties = require("./json/properties.json");
 const users = require("./json/users.json");
 
+/** 
+ * Creating Pool instance to manage connections to PostgreSQL database throughout our application.
+ */
+const { Pool } = require('pg');
+const pool = new Pool();
+
 /// Users
 
 /**
