@@ -30,7 +30,7 @@ const getUserWithEmail = function (email) {
     .query(`SELECT * FROM users WHERE email = $1`, [email])
     .then((result) => {
       // The promise resolves with a user object with the given email address, or null if that user does not exist
-      return result.rows[0] || null; 
+      return result.rows[0] || null;
     })
     .catch((err) => {
       console.log(err.message);
@@ -44,14 +44,14 @@ const getUserWithEmail = function (email) {
  */
 const getUserWithId = function (id) {
   return pool
-  .query(`SELECT * FROM users WHERE id = $1`, [id])
-  .then((result) => {
-    // The promise resolves with a user object with the given id, or null if that id does not exist
-    return result.rows[0] || null; 
-  })
-  .catch((err) => {
-    console.log(err.message);
-  });
+    .query(`SELECT * FROM users WHERE id = $1`, [id])
+    .then((result) => {
+      // The promise resolves with a user object with the given id, or null if that id does not exist
+      return result.rows[0] || null;
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
 };
 
 /**
@@ -60,10 +60,17 @@ const getUserWithId = function (id) {
  * @return {Promise<{}>} A promise to the user.
  */
 const addUser = function (user) {
-  const userId = Object.keys(users).length + 1;
-  user.id = userId;
-  users[userId] = user;
-  return Promise.resolve(user);
+  // Insert query to sign up a new user with auto-generated id
+  return pool
+    .query(`INSERT INTO users (name, email, password)
+          VALUES ($1, $2, $3)
+          RETURNING *;`, [user.name, user.email, user.password])
+    .then((result) => {
+      return result.rows[0];
+    })
+    .catch((err) => {
+      console.log(err.message);
+    })
 };
 
 /// Reservations
