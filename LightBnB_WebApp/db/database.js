@@ -90,12 +90,12 @@ const getAllReservations = function (guest_id, limit = 10) {
       GROUP BY properties.id, reservations.id
       ORDER BY reservations.start_date
       LIMIT $2;`, [guest_id, limit])
-      .then((result) => {
-        return result.rows;
-      })
-      .catch((err) => {
-        console.log(err.message);
-      }) 
+    .then((result) => {
+      return result.rows;
+    })
+    .catch((err) => {
+      console.log(err.message);
+    })
 };
 
 /// Properties
@@ -107,22 +107,25 @@ const getAllReservations = function (guest_id, limit = 10) {
  * @return {Promise<[{}]>}  A promise to the properties.
  */
 const getAllProperties = (options, limit = 10) => {
-  // 1
+  
+  // Setup an array to hold any parameters that may be available for the query
   const queryParams = [];
-  // 2
+  
+  // Start the query with all information that comes before the WHERE clause
   let queryString = `
   SELECT properties.*, avg(property_reviews.rating) as average_rating
   FROM properties
   JOIN property_reviews ON properties.id = property_id
   `;
 
-  // 3
+  // Conditions for search filters
+  // search option: city
   if (options.city) {
     queryParams.push(`%${options.city}%`);
     queryString += `WHERE city LIKE $${queryParams.length} `;
   }
 
-  // 4
+  // Any query that comes after the WHERE clause
   queryParams.push(limit);
   queryString += `
   GROUP BY properties.id
@@ -130,10 +133,10 @@ const getAllProperties = (options, limit = 10) => {
   LIMIT $${queryParams.length};
   `;
 
-  // 5
+  // Console log everything just to make sure weverything is working properly
   console.log(queryString, queryParams);
 
-  // 6
+  // Returning the results using a database connection pool
   return pool.query
 };
 
