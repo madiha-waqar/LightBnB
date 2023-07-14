@@ -136,8 +136,14 @@ const getAllProperties = (options, limit = 10) => {
   // Console log everything just to make sure weverything is working properly
   console.log(queryString, queryParams);
 
-  // Returning the results using a database connection pool
-  return pool.query
+  // Returning the promise using a database connection pool
+  return pool.query(queryString, queryParams)
+  .then((result) => {
+    return result.rows;
+  })
+  .catch((err) => {
+    console.log(err.message);
+  })
 };
 
 /**
