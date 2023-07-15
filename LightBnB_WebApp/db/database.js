@@ -137,6 +137,16 @@ const getAllProperties = (options, limit = 10) => {
     queryString += `properties.owner_id = $${queryParams.length} `;
   }
 
+    // search option: minimum_price_per_night
+  if (options.minimum_price_per_night) {
+    // If other search filters are entered then add AND clause otherwise add WHERE clause
+    queryParams.length ? (queryString += `AND `) : (queryString += `WHERE `);
+    // Push the value of min price to queryParams array
+    queryParams.push(options.minimum_price_per_night);
+    // show result for condition: cost_per_night >= minimum_price_per_night
+    queryString += `cost_per_night >= $${queryParams.length} `;
+  }
+
 
   // Any query that comes after the WHERE clause
   queryParams.push(limit);
