@@ -142,7 +142,7 @@ const getAllProperties = (options, limit = 10) => {
     // If other search filters are entered then add AND clause otherwise add WHERE clause
     queryParams.length ? (queryString += `AND `) : (queryString += `WHERE `);
     // Push the value of min price to queryParams array
-    queryParams.push(options.minimum_price_per_night);
+    queryParams.push(options.minimum_price_per_night * 100);
     // show result for condition: cost_per_night >= minimum_price_per_night
     queryString += `cost_per_night >= $${queryParams.length} `;
   }
