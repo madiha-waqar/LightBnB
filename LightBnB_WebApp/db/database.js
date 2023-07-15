@@ -157,6 +157,11 @@ const getAllProperties = (options, limit = 10) => {
     queryString += `cost_per_night <= $${queryParams.length} `;
   }
 
+  // search option: minimum_rating
+  if (options.minimum_rating) {
+    queryParams.push(options.minimum_rating);
+    queryString += `HAVING avg(property_reviews.rating) >= $${queryParams.length} `;
+  }
 
   // Any query that comes after the WHERE clause
   queryParams.push(limit);
