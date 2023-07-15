@@ -107,10 +107,10 @@ const getAllReservations = function (guest_id, limit = 10) {
  * @return {Promise<[{}]>}  A promise to the properties.
  */
 const getAllProperties = (options, limit = 10) => {
-  
+
   // Setup an array to hold any parameters that may be available for the query
   const queryParams = [];
-  
+
   // Start the query with all information that comes before the WHERE clause
   let queryString = `
   SELECT properties.*, avg(property_reviews.rating) as average_rating
@@ -122,8 +122,21 @@ const getAllProperties = (options, limit = 10) => {
   // search option: city
   if (options.city) {
     queryParams.push(`%${options.city}%`);
-    queryString += `WHERE city LIKE $${queryParams.length} `;
+    queryString += `
+    WHERE city LIKE $${queryParams.length}`;
   }
+
+  // when owner is logged in to app
+  if (options.owner_id) {
+  // Check if there are already other search filters, 
+  // If there are, add "AND" to append the new condition otherwise, add "WHERE" to start a new condition
+    queryParams.length ? (queryString += `AND `) : (queryString += `WHERE `);
+    // Push the value of options.owner_id to the queryParams array
+    queryParams.push(options.owner_id);
+    // Add a condition to the queryString using the owner ID
+    queryString += `properties.owner_id = $${queryParams.length} `;
+  }
+
 
   // Any query that comes after the WHERE clause
   queryParams.push(limit);
@@ -134,16 +147,16 @@ const getAllProperties = (options, limit = 10) => {
   `;
 
   // Console log everything just to make sure weverything is working properly
-  console.log(queryString, queryParams);
+  //console.log(queryString, queryParams);
 
   // Returning the promise using a database connection pool
   return pool.query(queryString, queryParams)
-  .then((result) => {
-    return result.rows;
-  })
-  .catch((err) => {
-    console.log(err.message);
-  })
+    .then((result) => {
+      return result.rows;
+    })
+    .catch((err) => {
+      console.log(err.message);
+    })
 };
 
 /**
