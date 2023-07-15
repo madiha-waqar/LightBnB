@@ -147,6 +147,16 @@ const getAllProperties = (options, limit = 10) => {
     queryString += `cost_per_night >= $${queryParams.length} `;
   }
 
+  // search option: maximum_price_per_night
+  if (options.maximum_price_per_night) {
+    // If other search filters are entered then add AND clause otherwise add WHERE clause
+    queryParams.length ? (queryString += `AND `) : (queryString += `WHERE `);
+    // Push the value of max price to queryParams array
+    queryParams.push(options.maximum_price_per_night * 100);
+    // show result for condition: cost_per_night <= maximum_price_per_night
+    queryString += `cost_per_night <= $${queryParams.length} `;
+  }
+
 
   // Any query that comes after the WHERE clause
   queryParams.push(limit);
