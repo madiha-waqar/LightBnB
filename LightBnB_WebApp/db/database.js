@@ -170,13 +170,9 @@ const getAllProperties = (options, limit = 10) => {
   // Any query that comes after the WHERE clause
   queryParams.push(limit);
   queryString += `
-  
   ORDER BY cost_per_night
   LIMIT $${queryParams.length};
   `;
-
-  // Console log everything just to make sure weverything is working properly
-  //console.log(queryString, queryParams);
 
   // Returning the promise using a database connection pool
   return pool.query(queryString, queryParams)
