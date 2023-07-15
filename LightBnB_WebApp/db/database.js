@@ -128,8 +128,8 @@ const getAllProperties = (options, limit = 10) => {
 
   // when owner is logged in to app
   if (options.owner_id) {
-  // Check if there are already other search filters, 
-  // If there are, add "AND" to append the new condition otherwise, add "WHERE" to start a new condition
+    // Check if there are already other search filters, 
+    // If there are, add "AND" to append the new condition otherwise, add "WHERE" to start a new condition
     queryParams.length ? (queryString += `AND `) : (queryString += `WHERE `);
     // Push the value of options.owner_id to the queryParams array
     queryParams.push(options.owner_id);
@@ -137,7 +137,7 @@ const getAllProperties = (options, limit = 10) => {
     queryString += `properties.owner_id = $${queryParams.length} `;
   }
 
-    // search option: minimum_price_per_night
+  // search option: minimum_price_per_night
   if (options.minimum_price_per_night) {
     // If other search filters are entered then add AND clause otherwise add WHERE clause
     queryParams.length ? (queryString += `AND `) : (queryString += `WHERE `);
@@ -156,6 +156,10 @@ const getAllProperties = (options, limit = 10) => {
     // show result for condition: cost_per_night <= maximum_price_per_night
     queryString += `cost_per_night <= $${queryParams.length} `;
   }
+  
+  // move 'GROUP BY' before 'HAVING' clause to maintain SQL order of execution
+  queryString += `
+  GROUP BY properties.id  `;
 
   // search option: minimum_rating
   if (options.minimum_rating) {
@@ -166,7 +170,7 @@ const getAllProperties = (options, limit = 10) => {
   // Any query that comes after the WHERE clause
   queryParams.push(limit);
   queryString += `
-  GROUP BY properties.id
+  
   ORDER BY cost_per_night
   LIMIT $${queryParams.length};
   `;
