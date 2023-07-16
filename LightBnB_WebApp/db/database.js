@@ -1,3 +1,6 @@
+// Importing the 'pool' object from './index.js'
+const pool = require('./index.js');
+
 /// Users
 
 /**
