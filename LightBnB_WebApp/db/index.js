@@ -10,3 +10,6 @@ const pool = new Pool({
   host: process.env.DB_HOST,
   database: process.env.DB_DATABASE
 });
+
+// Exporting the 'pool' object
+module.exports = pool;
