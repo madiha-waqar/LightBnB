@@ -1,6 +1,3 @@
-const properties = require("./json/properties.json");
-const users = require("./json/users.json");
-
 /// Connections
 
 // Importing the Pool object from the 'pg' module
