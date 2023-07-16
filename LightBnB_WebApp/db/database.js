@@ -11,10 +11,6 @@ const pool = new Pool({
   database: 'lightbnb'
 });
 
-// Test code to verify the connection is successfull
-pool.query(`SELECT title FROM properties LIMIT 10;`).then(response => { response })
-
-
 /// Users
 
 /**
