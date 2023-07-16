@@ -1,6 +1,8 @@
 const path = require("path");
 const express = require("express");
 const cookieSession = require("cookie-session");
+// Load and configure environment variables from the .env file
+require('dotenv').config();
 
 const app = express();
 const port = process.env.PORT || 3000;
