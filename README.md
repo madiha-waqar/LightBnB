@@ -1,16 +1,18 @@
-# :curly_loop:Lightbnb - A place like home, away from home :tent:
+# :tent:Lightbnb - _A place like home, away from home!_
 
-# About LightBnB:curly_loop:
-If you're a passionate traveler but seeking comfort and cleanliness of home then Lightbnb is an app for you! 
+# About LightBnB
+If you're a passionate traveler but seeking comfort of home then Lightbnb is an app for you! 
+
 Its a convenient little app providing homeowners with the option to rent out their homes to _vacationers_, offering a refreshing alternative to traditional hotels and bed and breakfasts!
+
 With this app, users can login and find properties based on different search filters, access the property information, make reservations, manage their bookings, and provide feedback through reviews! 
-<sub>A complete app to enhance your travel experience!</sub>
 
 ## LightBnB Project
 This project is made by :raising_hand_woman: [Madiha Waqar](https://www.linkedin.com/in/madiha-waqar-a8253827) as part of Lighthouse Labs Web Development Flex Program curriculum. 
 
 ## Tech Stack
-LightBnB is _full-stack application_ that uses `PostgreSQL` relational database system and `Express` to manage the backend. Front-end has already been provided by Lighthouse labs which uses `HTML, CSS3, SASS and Javascript`. Front-end boilterplate code has been forked from [LightBnB_WebApp](https://github.com/lighthouse-labs/LightBnB_WebApp)
+LightBnB is _full-stack application_ that uses `PostgreSQL` relational database system and `Express` to manage the backend. Front-end has already been provided by Lighthouse labs which uses `HTML, CSS3, SASS and Javascript`. 
+
 <p align="center">
   <a href="https://skillicons.dev">
     <img src="https://skillicons.dev/icons?i=postgres,express,html,css,sass,javascript" />
@@ -47,7 +49,7 @@ LightBnB is _full-stack application_ that uses `PostgreSQL` relational database 
 
 ## :triangular_flag_on_post: Getting Started
 
-Clone the remote repo to a folder named lightbnb
+Clone the remote repo to a folder named lightbnb. 
 ## Database Setup
 
   - `cd lightbnb`
@@ -59,7 +61,7 @@ Clone the remote repo to a folder named lightbnb
   - Database connection configurations are stored in `.env` file
 
 ## Application Setup & Features
-
+- The boilterplate code has been forked from [LightBnB_WebApp](https://github.com/lighthouse-labs/LightBnB_WebApp)
 - `cd LightBnB_WebApp` and install dependencies using the `npm install i` command
 - Start the web server using the `npm run local` command. 
 - The app will be served at http://localhost:3000
@@ -83,7 +85,7 @@ Clone the remote repo to a folder named lightbnb
   - getAllProperties
   - addProperty
   
-## App Screenshots
+## App Feature Screenshots
 - Search Filters
 
 ![responsive-desktop.png](./docs/Lightbnb_SearchFilters.png)
